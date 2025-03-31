@@ -158,7 +158,17 @@
             </button>
             <a class="navbar-brand ms-3" href="#">B2B Yönetim Paneli</a>
             
-            <div class="d-flex align-items-center">
+            <!-- Arama Çubuğu -->
+            <div class="d-flex mx-4" style="width: 300px;">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm" placeholder="Ürün Arayın..." aria-label="Arama">
+                    <button class="btn btn-outline-secondary btn-sm" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="d-flex align-items-center ms-auto">
                 <div class="position-relative me-3">
                     <button class="menu-button" id="notificationDropdown" data-bs-toggle="dropdown">
                         <i class="fas fa-bell"></i>
@@ -171,12 +181,12 @@
                     </div>
                 </div>
                 
-                <div class="dropdown">
-                    <button class="menu-button" type="button" id="userDropdown" data-bs-toggle="dropdown">
-                        <i class="fas fa-user"></i>
+                <div class="dropdown d-flex align-items-center">
+                    <button class="menu-button d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                        <i class="fas fa-user me-2"></i>
+                        <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><h6 class="dropdown-header">{{ Auth::user()->name }}</h6></li>
                         <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i>Hesabım</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
