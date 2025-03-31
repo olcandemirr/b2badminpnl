@@ -27,6 +27,7 @@
             width: 100%;
             padding: 20px;
             transition: all 0.3s;
+            margin-left: 0;
         }
 
         .overlay {
@@ -62,6 +63,51 @@
             margin-right: 10px;
             width: 20px;
             text-align: center;
+        }
+
+        .sidebar-submenu {
+            list-style: none;
+            padding-left: 35px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .sidebar-submenu.show {
+            max-height: 500px;
+        }
+
+        .sidebar-submenu a {
+            padding: 8px 15px;
+            color: #666;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .sidebar-submenu a:hover {
+            color: #333;
+            background: #e9ecef;
+        }
+
+        .sidebar-item {
+            position: relative;
+        }
+
+        .sidebar-item.active {
+            background: #e9ecef;
+        }
+
+        .sidebar-item.active > .sidebar-link {
+            color: #0d6efd;
+        }
+
+        .dropdown-toggle::after {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .stat-card {
@@ -135,17 +181,129 @@
         <div class="p-4">
             <img src="/logo.png" alt="Logo" class="img-fluid mb-4">
             <ul class="list-unstyled">
-                <li><a href="#" class="sidebar-link"><i class="fas fa-home"></i> Anasayfa</a></li>
-                <li><a href="#" class="sidebar-link"><i class="fas fa-shopping-cart"></i> Sipariş Yönetimi</a></li>
-                <li><a href="#" class="sidebar-link"><i class="fas fa-box"></i> Ürün Yönetimi</a></li>
-                <li><a href="#" class="sidebar-link"><i class="fas fa-users"></i> Bayi Yönetimi</a></li>
-                <li><a href="#" class="sidebar-link"><i class="fas fa-envelope"></i> Mesaj & Şikayetler</a></li>
-                <li><a href="#" class="sidebar-link"><i class="fas fa-cog"></i> Tanımlar</a></li>
-                <li><a href="#" class="sidebar-link"><i class="fas fa-chart-bar"></i> Raporlar</a></li>
-                <li><a href="#" class="sidebar-link"><i class="fas fa-user-cog"></i> Kullanıcı Yönetimi</a></li>
-                <li><a href="#" class="sidebar-link"><i class="fas fa-code"></i> Kod Yönetimi</a></li>
-                <li><a href="#" class="sidebar-link"><i class="fas fa-credit-card"></i> Ödeme Ayar & List</a></li>
-                <li><a href="#" class="sidebar-link"><i class="fas fa-wrench"></i> Ayarlar</a></li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-home"></i> Anasayfa
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#siparisSubmenu" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse">
+                        <i class="fas fa-shopping-cart"></i> Sipariş Yönetimi
+                    </a>
+                    <ul class="collapse sidebar-submenu" id="siparisSubmenu">
+                        <li><a href="#">Bekleyen Siparişler</a></li>
+                        <li><a href="#">Bekleyen Siparişler Detay</a></li>
+                        <li><a href="#">Onaylanan Siparişler</a></li>
+                        <li><a href="#">Onay Siparişler Detay</a></li>
+                        <li><a href="#">İptal Siparişler</a></li>
+                        <li><a href="#">İptal Siparişler Detay</a></li>
+                        <li><a href="#">Sepet Hatırlat</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#urunSubmenu" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse">
+                        <i class="fas fa-box"></i> Ürün Yönetimi
+                    </a>
+                    <ul class="collapse sidebar-submenu" id="urunSubmenu">
+                        <li><a href="#">Ürünler</a></li>
+                        <li><a href="#">Ürün Ekle</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#bayiSubmenu" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse">
+                        <i class="fas fa-users"></i> Bayi Yönetimi
+                    </a>
+                    <ul class="collapse sidebar-submenu" id="bayiSubmenu">
+                        <li><a href="#">Bayi Listesi</a></li>
+                        <li><a href="#">Bayi Ekle</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#mesajSubmenu" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse">
+                        <i class="fas fa-envelope"></i> Mesaj & Şikayetler
+                    </a>
+                    <ul class="collapse sidebar-submenu" id="mesajSubmenu">
+                        <li><a href="#">Mesaj Yaz</a></li>
+                        <li><a href="#">Gelen Kutusu</a></li>
+                        <li><a href="#">Giden Kutusu</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#tanimlarSubmenu" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse">
+                        <i class="fas fa-cog"></i> Tanımlar
+                    </a>
+                    <ul class="collapse sidebar-submenu" id="tanimlarSubmenu">
+                        <li><a href="#">Bölüm Ekle</a></li>
+                        <li><a href="#">Kategori Ekle</a></li>
+                        <li><a href="#">Slayt Ekle</a></li>
+                        <li><a href="#">İçerik Ekle</a></li>
+                        <li><a href="#">İçerik Listesi</a></li>
+                        <li><a href="#">İskonto Kod Tanım</a></li>
+                        <li><a href="#">İskonto Tip Ekle</a></li>
+                        <li><a href="#">İskonto Tip Listesi</a></li>
+                        <li><a href="#">Aktarım</a></li>
+                        <li><a href="#">Dosyadan Aktar</a></li>
+                        <li><a href="#">Foto Yükle</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#raporlarSubmenu" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse">
+                        <i class="fas fa-chart-bar"></i> Raporlar
+                    </a>
+                    <ul class="collapse sidebar-submenu" id="raporlarSubmenu">
+                        <li><a href="#">Rapor Özet</a></li>
+                        <li><a href="#">Log Raporu</a></li>
+                        <li><a href="#">Bayi Raporu</a></li>
+                        <li><a href="#">Günlük Bayi Satış</a></li>
+                        <li><a href="#">Yıllık Bayi Satış</a></li>
+                        <li><a href="#">Yıllık Satış</a></li>
+                        <li><a href="#">Temsilci Hakediş Raporu</a></li>
+                        <li><a href="#">Stok Raporu Detay</a></li>
+                        <li><a href="#">Stok Raporu Özet</a></li>
+                        <li><a href="#">Sipariş Raporu</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#kullaniciSubmenu" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse">
+                        <i class="fas fa-user-cog"></i> Kullanıcı Yönetimi
+                    </a>
+                    <ul class="collapse sidebar-submenu" id="kullaniciSubmenu">
+                        <li><a href="#">Kullanıcı Listesi</a></li>
+                        <li><a href="#">Kullanıcı Ekle</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#kodSubmenu" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse">
+                        <i class="fas fa-code"></i> Kod Yönetimi
+                    </a>
+                    <ul class="collapse sidebar-submenu" id="kodSubmenu">
+                        <li><a href="#">Kod Ekle</a></li>
+                        <li><a href="#">Kod Listesi</a></li>
+                        <li><a href="#">Kullanılan Kod Listesi</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#odemeSubmenu" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse">
+                        <i class="fas fa-credit-card"></i> Ödeme Ayar & List
+                    </a>
+                    <ul class="collapse sidebar-submenu" id="odemeSubmenu">
+                        <li><a href="#">Havale Hesapları</a></li>
+                        <li><a href="#">Havale Hesabı Ekle</a></li>
+                        <li><a href="#">Sanal Poslar</a></li>
+                        <li><a href="#">Sanal Pos Ödeme Listesi</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#ayarlarSubmenu" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse">
+                        <i class="fas fa-wrench"></i> Ayarlar
+                    </a>
+                    <ul class="collapse sidebar-submenu" id="ayarlarSubmenu">
+                        <li><a href="#">Genel Ayarlar</a></li>
+                        <li><a href="#">Desi Fiyatları</a></li>
+                        <li><a href="#">Parametreler</a></li>
+                        <li><a href="#">Anket Yönetim</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -296,6 +454,7 @@
             const sidebar = document.getElementById('sidebar');
             const sidebarCollapse = document.getElementById('sidebarCollapse');
             const overlay = document.querySelector('.overlay');
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
             sidebarCollapse.addEventListener('click', function() {
                 sidebar.classList.toggle('active');
@@ -305,6 +464,15 @@
             overlay.addEventListener('click', function() {
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
+            });
+
+            // Aktif menü öğesini işaretleme
+            const sidebarItems = document.querySelectorAll('.sidebar-item');
+            sidebarItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    sidebarItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
             });
         });
     </script>
