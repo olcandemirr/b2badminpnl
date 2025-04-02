@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DealerController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,3 +64,14 @@ Route::get('/dealers', [DealerController::class, 'index'])->name('dealers.index'
 Route::get('/dealers/create', [DealerController::class, 'create'])->name('dealers.create');
 Route::get('/dealers/export', [DealerController::class, 'exportExcel'])->name('dealers.export');
 Route::post('/dealers', [DealerController::class, 'store'])->name('dealers.store');
+
+// Mesaj Yönetimi
+Route::prefix('messages')->group(function () {
+    Route::get('/create', [MessageController::class, 'create'])->name('messages.create');
+    Route::post('/', [MessageController::class, 'store'])->name('messages.store');
+    Route::get('/inbox', [MessageController::class, 'inbox'])->name('messages.inbox');
+    Route::get('/sent', [MessageController::class, 'sent'])->name('messages.sent');
+    Route::post('/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.read');
+    Route::delete('/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
+    Route::get('/{message}', [MessageController::class, 'show'])->name('messages.show');
+});

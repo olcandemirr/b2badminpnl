@@ -202,9 +202,9 @@
                         <i class="fas fa-envelope"></i> Mesaj & Şikayetler
                     </a>
                     <ul class="collapse sidebar-submenu" id="mesajSubmenu">
-                        <li><a href="#">Mesaj Yaz</a></li>
-                        <li><a href="#">Gelen Kutusu</a></li>
-                        <li><a href="#">Giden Kutusu</a></li>
+                        <li><a href="{{ route('messages.create') }}">Mesaj Yaz</a></li>
+                        <li><a href="{{ route('messages.inbox') }}">Gelen Kutusu</a></li>
+                        <li><a href="{{ route('messages.sent') }}">Giden Kutusu</a></li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
