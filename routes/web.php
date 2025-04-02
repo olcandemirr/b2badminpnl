@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +34,13 @@ Route::post('/logout', function () {
 
 // Dashboard Route
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Product Routes
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+Route::get('/products/export', [ProductController::class, 'export'])->name('products.export');
+
+// Order Routes
+Route::get('/orders/pending', [OrderController::class, 'pending'])->name('orders.pending');
+Route::get('/orders/pending/export', [OrderController::class, 'exportPending'])->name('orders.pending.export');
