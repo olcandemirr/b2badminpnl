@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DealerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,3 +57,9 @@ Route::get('/orders/cancelled', [OrderController::class, 'cancelled'])->name('or
 Route::get('/orders/cancelled/details', [OrderController::class, 'cancelledDetails'])->name('orders.cancelled.details');
 Route::get('/orders/cancelled/export', [OrderController::class, 'exportCancelled'])->name('orders.cancelled.export');
 Route::get('/orders/cancelled/details/export', [OrderController::class, 'exportCancelledDetails'])->name('orders.cancelled.details.export');
+
+// Dealer Routes
+Route::get('/dealers', [DealerController::class, 'index'])->name('dealers.index');
+Route::get('/dealers/create', [DealerController::class, 'create'])->name('dealers.create');
+Route::get('/dealers/export', [DealerController::class, 'exportExcel'])->name('dealers.export');
+Route::post('/dealers', [DealerController::class, 'store'])->name('dealers.store');

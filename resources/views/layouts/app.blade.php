@@ -170,8 +170,8 @@
                         <i class="fas fa-users"></i> Bayi Yönetimi
                     </a>
                     <ul class="collapse sidebar-submenu" id="bayiSubmenu">
-                        <li><a href="#">Bayi Listesi</a></li>
-                        <li><a href="#">Bayi Ekle</a></li>
+                        <li><a href="{{ route('dealers.index') }}">Bayi Listesi</a></li>
+                        <li><a href="{{ route('dealers.create') }}">Bayi Ekle</a></li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
