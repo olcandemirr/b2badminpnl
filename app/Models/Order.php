@@ -17,7 +17,8 @@ class Order extends Model
         'dealer_type',
         'main_dealer',
         'total',
-        'message'
+        'message',
+        'customer_name'
     ];
 
     protected $casts = [
@@ -25,4 +26,9 @@ class Order extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime'
     ];
+
+    public function details()
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
 }

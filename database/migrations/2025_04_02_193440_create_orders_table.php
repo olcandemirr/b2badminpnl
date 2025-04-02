@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('company_title');
             $table->string('dealer_type');
             $table->string('main_dealer')->nullable();
+            $table->string('customer_name');
             $table->decimal('total', 10, 2);
             $table->text('message')->nullable();
             $table->timestamps();

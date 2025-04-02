@@ -148,11 +148,11 @@
                     </a>
                     <ul class="collapse sidebar-submenu" id="siparisSubmenu">
                         <li><a href="{{ route('orders.pending') }}">Bekleyen Siparişler</a></li>
-                        <li><a href="#">Bekleyen Siparişler Detay</a></li>
-                        <li><a href="#">Onaylanan Siparişler</a></li>
-                        <li><a href="#">Onay Siparişler Detay</a></li>
-                        <li><a href="#">İptal Siparişler</a></li>
-                        <li><a href="#">İptal Siparişler Detay</a></li>
+                        <li><a href="{{ route('orders.pending.details') }}">Bekleyen Siparişler Detay</a></li>
+                        <li><a href="{{ route('orders.approved') }}">Onaylanan Siparişler</a></li>
+                        <li><a href="{{ route('orders.approved.details') }}">Onaylanan Siparişler Detay</a></li>
+                        <li><a href="{{ route('orders.cancelled') }}">İptal Siparişler</a></li>
+                        <li><a href="{{ route('orders.cancelled.details') }}">İptal Siparişler Detay</a></li>
                         <li><a href="#">Sepet Hatırlat</a></li>
                     </ul>
                 </li>

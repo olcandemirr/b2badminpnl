@@ -43,4 +43,16 @@ Route::get('/products/export', [ProductController::class, 'export'])->name('prod
 
 // Order Routes
 Route::get('/orders/pending', [OrderController::class, 'pending'])->name('orders.pending');
+Route::get('/orders/pending/details', [OrderController::class, 'pendingDetails'])->name('orders.pending.details');
 Route::get('/orders/pending/export', [OrderController::class, 'exportPending'])->name('orders.pending.export');
+Route::get('/orders/pending/details/export', [OrderController::class, 'exportPendingDetails'])->name('orders.pending.details.export');
+
+Route::get('/orders/approved', [OrderController::class, 'approved'])->name('orders.approved');
+Route::get('/orders/approved/details', [OrderController::class, 'approvedDetails'])->name('orders.approved.details');
+Route::get('/orders/approved/export', [OrderController::class, 'exportApproved'])->name('orders.approved.export');
+Route::get('/orders/approved/details/export', [OrderController::class, 'exportApprovedDetails'])->name('orders.approved.details.export');
+
+Route::get('/orders/cancelled', [OrderController::class, 'cancelled'])->name('orders.cancelled');
+Route::get('/orders/cancelled/details', [OrderController::class, 'cancelledDetails'])->name('orders.cancelled.details');
+Route::get('/orders/cancelled/export', [OrderController::class, 'exportCancelled'])->name('orders.cancelled.export');
+Route::get('/orders/cancelled/details/export', [OrderController::class, 'exportCancelledDetails'])->name('orders.cancelled.details.export');
