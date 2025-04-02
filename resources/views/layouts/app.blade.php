@@ -17,6 +17,7 @@
             top: 0;
             left: -250px;
             z-index: 1000;
+            overflow-y: auto;
         }
 
         #sidebar.active {
@@ -127,6 +128,28 @@
             color: white;
             font-size: 0.7rem;
         }
+
+        #sidebar .p-4 {
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        #sidebar .p-4::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        #sidebar .p-4::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        #sidebar .p-4::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        #sidebar .p-4::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     </style>
     @yield('styles')
 </head>
@@ -200,6 +223,120 @@
                         <li><a href="#">Aktarım</a></li>
                         <li><a href="#">Dosyadan Aktar</a></li>
                         <li><a href="#">Foto Yükle</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link" data-bs-toggle="collapse" data-bs-target="#reportsSubmenu">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Raporlar</span>
+                        <i class="fas fa-angle-down ms-auto"></i>
+                    </a>
+                    <ul class="collapse sidebar-submenu"id="reportsSubmenu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Rapor Özet</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Log Raporu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Bayi Raporu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Günlük Bayi Satış</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Yıllık Bayi Satış</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Yıllık Satış</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Temsilci Hakediş Raporu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Stok Raporu Detay</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Stok Raporu Özet</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Sipariş Raporu</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link" data-bs-toggle="collapse" data-bs-target="#userManagementSubmenu">
+                        <i class="fas fa-users"></i>
+                        <span>Kullanıcı Yönetimi</span>
+                        <i class="fas fa-angle-down ms-auto"></i>
+                    </a>
+                    <ul class="collapse sidebar-submenu" id="userManagementSubmenu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Kullanıcı Listesi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Kullanıcı Ekle</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link" data-bs-toggle="collapse" data-bs-target="#codeManagementSubmenu">
+                        <i class="fas fa-code"></i>
+                        <span>Kod Yönetimi</span>
+                        <i class="fas fa-angle-down ms-auto"></i>
+                    </a>
+                    <ul class="collapse sidebar-submenu" id="codeManagementSubmenu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Kod Ekle</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Kod Listesi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Kullanılan Kod Listesi</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link" data-bs-toggle="collapse" data-bs-target="#paymentSettingsSubmenu">
+                        <i class="fas fa-money-bill"></i>
+                        <span>Ödeme Ayar & List</span>
+                        <i class="fas fa-angle-down ms-auto"></i>
+                    </a>
+                    <ul class="collapse sidebar-submenu" id="paymentSettingsSubmenu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Havale Hesapları</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Havale Hesabı Ekle</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Sanal Poslar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Sanal Pos Ödeme Listesi</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link" data-bs-toggle="collapse" data-bs-target="#settingsSubmenu">
+                        <i class="fas fa-cog"></i>
+                        <span>Ayarlar</span>
+                        <i class="fas fa-angle-down ms-auto"></i>
+                    </a>
+                    <ul class="collapse sidebar-submenu" id="settingsSubmenu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Genel Ayarlar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Desi Fiyatları</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Parametreler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Anket Yönetim</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
