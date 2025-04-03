@@ -161,7 +161,7 @@
             <img src="/logo.png" alt="Logo" class="img-fluid mb-4">
             <ul class="list-unstyled">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="{{ route('dashboard') }}" class="sidebar-link">
                         <i class="fas fa-home"></i> Anasayfa
                     </a>
                 </li>
@@ -273,15 +273,14 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#settingsSubmenu" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse" >
-                        <i class="fas fa-cog"></i>Ayarlar
+                    <a href="#settingsSubmenu" data-bs-toggle="collapse" class="sidebar-link dropdown-toggle">
+                        <i class="fas fa-cog"></i> Ayarlar
                     </a>
                     <ul class="collapse sidebar-submenu" id="settingsSubmenu">
-                        <li><a href="#" class="nav-link">Genel Ayarlar</a></li>
-                        <li><a href="#" class="nav-link">Desi Fiyatları</a></li>
-                        <li><a href="#" class="nav-link">Parametreler</a></li>
-                        <li><a href="#" class="nav-link">Anket Yönetim</a></li>
-                        </li>
+                        <li><a href="{{ route('settings.general') }}">Genel Ayarlar</a></li>
+                        <li><a href="{{ route('settings.desi-prices') }}" >Desi Fiyatları</a></li>
+                        <li><a href="{{ route('settings.parameters') }}">Parametreler</a></li>
+                        <li><a href="{{ route('settings.surveys') }}" >Anket Yönetimi</a></li>
                     </ul>
                 </li>
             </ul>

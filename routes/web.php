@@ -13,6 +13,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -173,4 +174,16 @@ Route::prefix('payments')->name('payments.')->group(function () {
     Route::get('/virtual-pos/create', [PaymentController::class, 'createVirtualPos'])->name('virtual-pos.create');
     Route::post('/virtual-pos', [PaymentController::class, 'storeVirtualPos'])->name('virtual-pos.store');
     Route::get('/virtual-pos/payments', [PaymentController::class, 'virtualPosPayments'])->name('virtual-pos.payments');
+});
+
+// Ayarlar Routes
+Route::prefix('settings')->name('settings.')->group(function () {
+    Route::get('/general', [SettingController::class, 'general'])->name('general');
+    Route::post('/general', [SettingController::class, 'updateGeneral'])->name('general.update');
+    Route::get('/desi-prices', [SettingController::class, 'desiPrices'])->name('desi-prices');
+    Route::post('/desi-prices', [SettingController::class, 'updateDesiPrices'])->name('desi-prices.update');
+    Route::get('/parameters', [SettingController::class, 'parameters'])->name('parameters');
+    Route::post('/parameters', [SettingController::class, 'updateParameters'])->name('parameters.update');
+    Route::get('/surveys', [SettingController::class, 'surveys'])->name('surveys');
+    Route::post('/surveys', [SettingController::class, 'updateSurveys'])->name('surveys.update');
 });
