@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DealerController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\DefinitionController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,4 +129,17 @@ Route::prefix('definitions')->name('definitions.')->group(function () {
     // Photo Upload
     Route::get('/photo-upload', [DefinitionController::class, 'photoUpload'])->name('photo-upload');
     Route::post('/photo-upload/upload', [DefinitionController::class, 'uploadPhoto'])->name('photo-upload.upload');
+});
+
+// Raporlar Modülü Routes
+Route::prefix('reports')->name('reports.')->group(function () {
+    Route::get('/summary', [ReportController::class, 'summary'])->name('summary');
+    Route::get('/logs', [ReportController::class, 'logs'])->name('logs');
+    Route::get('/dealers', [ReportController::class, 'dealers'])->name('dealers');
+    Route::get('/daily-dealer-sales', [ReportController::class, 'dailyDealerSales'])->name('daily-dealer-sales');
+    Route::get('/yearly-dealer-sales', [ReportController::class, 'yearlyDealerSales'])->name('yearly-dealer-sales');
+    Route::get('/yearly-sales', [ReportController::class, 'yearlySales'])->name('yearly-sales');
+    Route::get('/representative-earnings', [ReportController::class, 'representativeEarnings'])->name('representative-earnings');
+    Route::get('/stock-detail', [ReportController::class, 'stockDetailReport'])->name('stock-detail');
+    Route::get('/stock-summary', [ReportController::class, 'stockSummaryReport'])->name('stock-summary');
 });
