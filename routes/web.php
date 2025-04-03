@@ -10,6 +10,8 @@ use App\Http\Controllers\DealerController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\DefinitionController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -142,4 +144,18 @@ Route::prefix('reports')->name('reports.')->group(function () {
     Route::get('/representative-earnings', [ReportController::class, 'representativeEarnings'])->name('representative-earnings');
     Route::get('/stock-detail', [ReportController::class, 'stockDetailReport'])->name('stock-detail');
     Route::get('/stock-summary', [ReportController::class, 'stockSummaryReport'])->name('stock-summary');
+});
+
+// Kullanıcı Yönetimi Routes
+Route::prefix('users')->name('users.')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('index');
+    Route::get('/create', [UserController::class, 'create'])->name('create');
+    Route::post('/', [UserController::class, 'store'])->name('store');
+});
+
+// Kod Yönetimi Routes
+Route::prefix('codes')->name('codes.')->group(function () {
+    Route::get('/', [CodeController::class, 'index'])->name('index');
+    Route::get('/create', [CodeController::class, 'create'])->name('create');
+    Route::post('/', [CodeController::class, 'store'])->name('store');
 });

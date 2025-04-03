@@ -243,21 +243,21 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse" >
+                    <a href="#userManagementSubmenu" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse" >
                         <i class="fas fa-users"></i> Kullanıcı Yönetimi
                     </a>
                     <ul class="collapse sidebar-submenu" id="userManagementSubmenu">
-                        <li><a href="#" class="nav-link">Kullanıcı Listesi</a></li>
-                        <li><a href="#" class="nav-link">Kullanıcı Ekle</a></li>
+                        <li><a href="{{ route('users.index') }}">Kullanıcı Listesi</a></li>
+                        <li><a href="{{ route('users.create') }}">Kullanıcı Ekle</a></li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse" >
-                        <i class="fas fa-code"></i>Kod Yönetimi
+                    <a href="#codeManagementSubmenu" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse">
+                        <i class="fas fa-code"></i> Kod Yönetimi
                     </a>
                     <ul class="collapse sidebar-submenu" id="codeManagementSubmenu">
-                        <li><a href="#" class="nav-link">Kod Ekle</a></li>
-                        <li><a href="#" class="nav-link">Kod Listesi</a></li>
+                        <li><a href="{{ route('codes.create') }}">Kod Ekle</a></li>
+                        <li><a href="{{ route('codes.index') }}">Kod Listesi</a></li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
