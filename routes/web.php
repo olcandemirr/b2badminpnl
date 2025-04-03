@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DealerController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\DefinitionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,4 +75,57 @@ Route::prefix('messages')->group(function () {
     Route::post('/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.read');
     Route::delete('/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
     Route::get('/{message}', [MessageController::class, 'show'])->name('messages.show');
+});
+
+// Tanımlar Modülü Routes
+Route::prefix('definitions')->name('definitions.')->group(function () {
+    // Sections
+    Route::get('/sections', [DefinitionController::class, 'sections'])->name('sections');
+    Route::post('/sections/store', [DefinitionController::class, 'storeSection'])->name('sections.store');
+    Route::put('/sections/{section}', [DefinitionController::class, 'updateSection'])->name('sections.update');
+    Route::delete('/sections/{section}', [DefinitionController::class, 'deleteSection'])->name('sections.delete');
+
+    // Categories
+    Route::get('/categories', [DefinitionController::class, 'categories'])->name('categories');
+    Route::post('/categories/store', [DefinitionController::class, 'storeCategory'])->name('categories.store');
+    Route::put('/categories/{category}', [DefinitionController::class, 'updateCategory'])->name('categories.update');
+    Route::delete('/categories/{category}', [DefinitionController::class, 'deleteCategory'])->name('categories.delete');
+
+    // Contents
+    Route::get('/contents', [DefinitionController::class, 'contents'])->name('contents');
+    Route::get('/contents-list', [DefinitionController::class, 'contentsList'])->name('contents.list');
+    Route::post('/contents/store', [DefinitionController::class, 'storeContent'])->name('contents.store');
+    Route::put('/contents/{content}', [DefinitionController::class, 'updateContent'])->name('contents.update');
+    Route::delete('/contents/{content}', [DefinitionController::class, 'deleteContent'])->name('contents.delete');
+
+    // Slides
+    Route::get('/slides', [DefinitionController::class, 'slides'])->name('slides');
+    Route::post('/slides/store', [DefinitionController::class, 'storeSlide'])->name('slides.store');
+    Route::put('/slides/{slide}', [DefinitionController::class, 'updateSlide'])->name('slides.update');
+    Route::delete('/slides/{slide}', [DefinitionController::class, 'deleteSlide'])->name('slides.delete');
+
+    // Discount Codes
+    Route::get('/discount-codes', [DefinitionController::class, 'discountCodes'])->name('discount-codes');
+    Route::post('/discount-codes/store', [DefinitionController::class, 'storeDiscountCode'])->name('discount-codes.store');
+    Route::put('/discount-codes/{discountCode}', [DefinitionController::class, 'updateDiscountCode'])->name('discount-codes.update');
+    Route::delete('/discount-codes/{discountCode}', [DefinitionController::class, 'deleteDiscountCode'])->name('discount-codes.delete');
+
+    // Discount Types
+    Route::get('/discount-types', [DefinitionController::class, 'discountTypes'])->name('discount-types');
+    Route::get('/discount-types-list', [DefinitionController::class, 'discountTypesList'])->name('discount-types.list');
+    Route::post('/discount-types/store', [DefinitionController::class, 'storeDiscountType'])->name('discount-types.store');
+    Route::put('/discount-types/{discountType}', [DefinitionController::class, 'updateDiscountType'])->name('discount-types.update');
+    Route::delete('/discount-types/{discountType}', [DefinitionController::class, 'deleteDiscountType'])->name('discount-types.delete');
+
+    // Transfer
+    Route::get('/transfer', [DefinitionController::class, 'transfer'])->name('transfer');
+    Route::post('/transfer/start', [DefinitionController::class, 'startTransfer'])->name('transfer.start');
+
+    // File Import
+    Route::get('/file-import', [DefinitionController::class, 'fileImport'])->name('file-import');
+    Route::post('/file-import/start', [DefinitionController::class, 'startFileImport'])->name('file-import.start');
+
+    // Photo Upload
+    Route::get('/photo-upload', [DefinitionController::class, 'photoUpload'])->name('photo-upload');
+    Route::post('/photo-upload/upload', [DefinitionController::class, 'uploadPhoto'])->name('photo-upload.upload');
 });

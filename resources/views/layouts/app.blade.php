@@ -212,17 +212,17 @@
                         <i class="fas fa-cog"></i> Tanımlar
                     </a>
                     <ul class="collapse sidebar-submenu" id="tanimlarSubmenu">
-                        <li><a href="#">Bölüm Ekle</a></li>
-                        <li><a href="#">Kategori Ekle</a></li>
-                        <li><a href="#">Slayt Ekle</a></li>
-                        <li><a href="#">İçerik Ekle</a></li>
-                        <li><a href="#">İçerik Listesi</a></li>
-                        <li><a href="#">İskonto Kod Tanım</a></li>
-                        <li><a href="#">İskonto Tip Ekle</a></li>
-                        <li><a href="#">İskonto Tip Listesi</a></li>
-                        <li><a href="#">Aktarım</a></li>
-                        <li><a href="#">Dosyadan Aktar</a></li>
-                        <li><a href="#">Foto Yükle</a></li>
+                        <li><a href="{{ route('definitions.sections') }}">Bölüm Ekle</a></li>
+                        <li><a href="{{ route('definitions.categories') }}">Kategori Ekle</a></li>
+                        <li><a href="{{ route('definitions.slides') }}">Slayt Ekle</a></li>
+                        <li><a href="{{ route('definitions.contents') }}">İçerik Ekle</a></li>
+                        <li><a href="{{ route('definitions.contents.list') }}">İçerik Listesi</a></li>
+                        <li><a href="{{ route('definitions.discount-codes') }}">İskonto Kod Tanım</a></li>
+                        <li><a href="{{ route('definitions.discount-types') }}">İskonto Tip Ekle</a></li>
+                        <li><a href="{{ route('definitions.discount-types.list') }}">İskonto Tip Listesi</a></li>
+                        <li><a href="{{ route('definitions.transfer') }}">Aktarım</a></li>
+                        <li><a href="{{ route('definitions.file-import') }}">Dosyadan Aktar</a></li>
+                        <li><a href="{{ route('definitions.photo-upload') }}">Foto Yükle</a></li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
