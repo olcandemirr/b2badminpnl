@@ -12,6 +12,7 @@ use App\Http\Controllers\DefinitionController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CodeController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,4 +159,18 @@ Route::prefix('codes')->name('codes.')->group(function () {
     Route::get('/', [CodeController::class, 'index'])->name('index');
     Route::get('/create', [CodeController::class, 'create'])->name('create');
     Route::post('/', [CodeController::class, 'store'])->name('store');
+});
+
+// Ödeme Ayarları Routes
+Route::prefix('payments')->name('payments.')->group(function () {
+    // Havale hesapları routes
+    Route::get('/bank-accounts', [PaymentController::class, 'bankAccounts'])->name('bank-accounts');
+    Route::get('/bank-accounts/create', [PaymentController::class, 'createBankAccount'])->name('bank-accounts.create');
+    Route::post('/bank-accounts', [PaymentController::class, 'storeBankAccount'])->name('bank-accounts.store');
+    
+    // Sanal pos routes
+    Route::get('/virtual-pos', [PaymentController::class, 'virtualPos'])->name('virtual-pos');
+    Route::get('/virtual-pos/create', [PaymentController::class, 'createVirtualPos'])->name('virtual-pos.create');
+    Route::post('/virtual-pos', [PaymentController::class, 'storeVirtualPos'])->name('virtual-pos.store');
+    Route::get('/virtual-pos/payments', [PaymentController::class, 'virtualPosPayments'])->name('virtual-pos.payments');
 });

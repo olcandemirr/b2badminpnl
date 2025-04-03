@@ -261,14 +261,15 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse" >
-                        <i class="fas fa-money-bill"></i>Ödeme Ayar & List
+                    <a href="#paymentSettingsSubmenu" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse">
+                        <i class="fas fa-money-bill"></i> Ödeme Ayar & List
                     </a>
                     <ul class="collapse sidebar-submenu" id="paymentSettingsSubmenu">
-                        <li><a href="#" class="nav-link">Havale Hesapları</a></li>
-                        <li><a href="#" class="nav-link">Havale Hesabı Ekle</a></li>
-                        <li><a href="#" class="nav-link">Sanal Poslar</a></li>
-                        <li><a href="#" class="nav-link">Sanal Pos Ödeme Listesi</a></li>
+                        <li><a href="{{ route('payments.bank-accounts') }}">Havale Hesapları</a></li>
+                        <li><a href="{{ route('payments.bank-accounts.create') }}">Havale Hesabı Ekle</a></li>
+                        <li><a href="{{ route('payments.virtual-pos') }}">Sanal Poslar</a></li>
+                        <li><a href="{{ route('payments.virtual-pos.create') }}">Sanal Pos Ekle</a></li>
+                        <li><a href="{{ route('payments.virtual-pos.payments') }}">Sanal Pos Ödeme Listesi</a></li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
