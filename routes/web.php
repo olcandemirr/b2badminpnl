@@ -46,8 +46,11 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 // Product Routes
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 Route::get('/products/export', [ProductController::class, 'export'])->name('products.export');
+Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
 // Order Routes
 Route::get('/orders/pending', [OrderController::class, 'pending'])->name('orders.pending');
