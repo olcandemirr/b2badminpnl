@@ -327,7 +327,7 @@
                         <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i>Hesabım</a></li>
+                        <li><a class="dropdown-item" href="{{ route('users.account') }}"><i class="fas fa-user-circle me-2"></i>Hesabım</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">

@@ -153,6 +153,8 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('index');
     Route::get('/create', [UserController::class, 'create'])->name('create');
     Route::post('/', [UserController::class, 'store'])->name('store');
+    Route::get('/account', [UserController::class, 'account'])->name('account');
+    Route::post('/account', [UserController::class, 'updateAccount'])->name('account.update');
 });
 
 // Kod Yönetimi Routes
