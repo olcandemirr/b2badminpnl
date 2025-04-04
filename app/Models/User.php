@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_type',
+        'status',
+        'full_name',
     ];
 
     /**
@@ -40,5 +43,29 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'status' => 'boolean',
     ];
+
+    /**
+     * Kullanıcı tipini almak için accessor
+     */
+    public function getUserTypeTextAttribute()
+    {
+        $types = [
+            'admin' => 'Yönetici',
+            'customer' => 'Müşteri',
+            'dealer' => 'Bayi',
+            'staff' => 'Personel',
+        ];
+        
+        return $types[$this->user_type] ?? $this->user_type;
+    }
+    
+    /**
+     * Kullanıcı durumunu almak için accessor
+     */
+    public function getStatusTextAttribute()
+    {
+        return $this->status ? 'Aktif' : 'Pasif';
+    }
 }

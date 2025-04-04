@@ -9,24 +9,40 @@
                     <h3 class="card-title">Kullanıcı Yönetimi</h3>
                 </div>
                 <div class="card-body">
+                    <!-- Bildirim Alanı -->
+                    @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+
+                    @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+
                     <!-- Filtreler -->
-                    <form method="GET" action="{{ route('users.index') }}" class="mb-4">
-                        <div class="row g-3">
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    <input type="text" name="search" class="form-control" placeholder="Aranacak bilgi girin..." value="{{ request('search') }}">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-search"></i> SORGULA
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-secondary" id="exportExcel">
-                                    <i class="fas fa-file-excel"></i> Excele Aktar
+                    <div class="d-flex justify-content-between mb-4">
+                        <form method="GET" action="{{ route('users.index') }}" class="d-flex gap-2 flex-grow-1 me-3">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control" placeholder="Aranacak bilgi girin..." value="{{ request('search') }}">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search"></i> Ara
                                 </button>
                             </div>
+                        </form>
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('users.create') }}" class="btn btn-success">
+                                <i class="fas fa-user-plus"></i> Yeni Kullanıcı
+                            </a>
+                            <a href="{{ route('users.export') }}" class="btn btn-secondary">
+                                <i class="fas fa-file-excel"></i> Excele Aktar
+                            </a>
                         </div>
-                    </form>
+                    </div>
 
                     <!-- Tablo -->
                     <div class="table-responsive">
@@ -34,19 +50,51 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">
-                                        <i class="fas fa-sort"></i>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="selectAll">
+                                        </div>
                                     </th>
-                                    <th>Düz</th>
-                                    <th>No</th>
-                                    <th>Tipi</th>
+                                    <th>ID</th>
                                     <th>Kullanıcı Adı</th>
+                                    <th>E-posta</th>
                                     <th>Ad Soyad</th>
+                                    <th>Tipi</th>
                                     <th>Durumu</th>
                                     <th class="text-center">İşlemler</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Veriler veritabanından gelecek -->
+                                @forelse ($users as $user)
+                                <tr>
+                                    <td class="text-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="{{ $user->id }}">
+                                        </div>
+                                    </td>
+                                    <td>{{ $user->id }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->full_name }}</td>
+                                    <td>{{ $user->user_type_text }}</td>
+                                    <td>
+                                        <span class="badge {{ $user->status ? 'bg-success' : 'bg-danger' }}">
+                                            {{ $user->status_text }}
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary" title="Düzenle">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-sm btn-danger delete-user" data-id="{{ $user->id }}" title="Sil">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="8" class="text-center">Kullanıcı bulunamadı</td>
+                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -54,26 +102,41 @@
                     <!-- Sayfalama -->
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <div>
-                            0 kayıttan 0 ile 0 arası gösteriliyor
+                            @if ($users->total() > 0)
+                                {{ ($users->currentPage() - 1) * $users->perPage() + 1 }} ile 
+                                {{ min($users->currentPage() * $users->perPage(), $users->total()) }} arası gösteriliyor
+                                (Toplam: {{ $users->total() }} kayıt)
+                            @else
+                                0 kayıt
+                            @endif
                         </div>
-                        <nav>
-                            <ul class="pagination mb-0">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Önceki</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1</a>
-                                </li>
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#">Sonraki</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div>
+                            {{ $users->withQueryString()->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Silme İşlemi Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Kullanıcı Silme Onayı</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bu kullanıcıyı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+        <button type="button" class="btn btn-danger" id="confirmDelete">Evet, Sil</button>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
 
@@ -95,65 +158,15 @@
     border-bottom: 2px solid #dee2e6;
     white-space: nowrap;
     font-size: 0.9rem;
-    text-align: center;
 }
 
 .table td {
     vertical-align: middle;
     white-space: nowrap;
-    text-align: left;
-}
-
-.table td:last-child {
-    text-align: center;
 }
 
 .pagination {
     margin-bottom: 0;
-}
-
-.page-link {
-    padding: 0.375rem 0.75rem;
-}
-
-.table-responsive {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.fa-sort {
-    cursor: pointer;
-}
-
-.fa-sort:hover {
-    color: #0d6efd;
-}
-
-.status-active {
-    color: #198754;
-    background-color: #d1e7dd;
-    border-color: #badbcc;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-}
-
-.status-inactive {
-    color: #dc3545;
-    background-color: #f8d7da;
-    border-color: #f5c2c7;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-}
-
-.edit-button {
-    color: #0d6efd;
-    cursor: pointer;
-}
-
-.edit-button:hover {
-    color: #0a58ca;
 }
 </style>
 @endpush
@@ -161,17 +174,48 @@
 @push('scripts')
 <script>
 $(document).ready(function() {
-    // Excel export butonu
-    $('#exportExcel').click(function() {
-        // Excel export işlemi burada yapılacak
-        alert('Excel export özelliği eklenecek');
+    // Tüm checkbox'ları seçme/kaldırma
+    $('#selectAll').change(function() {
+        $('tbody input[type="checkbox"]').prop('checked', $(this).prop('checked'));
     });
-
-    // Sıralama işlemi
-    $('.fa-sort').click(function() {
-        // Sıralama işlemi burada yapılacak
-        alert('Sıralama özelliği eklenecek');
+    
+    // Kullanıcı silme işlemi
+    let userIdToDelete = null;
+    
+    $('.delete-user').click(function() {
+        userIdToDelete = $(this).data('id');
+        $('#deleteModal').modal('show');
     });
+    
+    $('#confirmDelete').click(function() {
+        if (userIdToDelete) {
+            $.ajax({
+                url: `/users/${userIdToDelete}`,
+                type: 'DELETE',
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    $('#deleteModal').modal('hide');
+                    if (response.success) {
+                        // Başarılı silme işlemi
+                        location.reload();
+                    } else {
+                        alert(response.message || 'Silme işlemi sırasında bir hata oluştu.');
+                    }
+                },
+                error: function() {
+                    $('#deleteModal').modal('hide');
+                    alert('Silme işlemi sırasında bir hata oluştu.');
+                }
+            });
+        }
+    });
+    
+    // Bildirim otomatik kapanma
+    setTimeout(function() {
+        $('.alert').alert('close');
+    }, 5000);
 });
 </script>
 @endpush 
