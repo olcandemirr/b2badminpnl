@@ -73,6 +73,14 @@ Route::get('/dealers', [DealerController::class, 'index'])->name('dealers.index'
 Route::get('/dealers/create', [DealerController::class, 'create'])->name('dealers.create');
 Route::get('/dealers/export', [DealerController::class, 'exportExcel'])->name('dealers.export');
 Route::post('/dealers', [DealerController::class, 'store'])->name('dealers.store');
+Route::get('/dealers/{id}/edit', [DealerController::class, 'edit'])->name('dealers.edit');
+Route::put('/dealers/{id}', [DealerController::class, 'update'])->name('dealers.update');
+Route::delete('/dealers/{id}', [DealerController::class, 'destroy'])->name('dealers.destroy');
+
+// Super Dealer Routes
+Route::get('/super-dealers', [DealerController::class, 'superDealers'])->name('dealers.super-dealers');
+Route::get('/dealers/{id}/make-super-dealer', [DealerController::class, 'makeSuperDealer'])->name('dealers.make-super-dealer');
+Route::get('/dealers/{id}/remove-super-dealer', [DealerController::class, 'removeSuperDealer'])->name('dealers.remove-super-dealer');
 
 // Mesaj Yönetimi
 Route::prefix('messages')->group(function () {

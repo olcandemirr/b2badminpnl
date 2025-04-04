@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('dealers', function (Blueprint $table) {
             $table->id();
             // Giriş Bilgileri
+            $table->string('dealer_no')->nullable()->unique();
             $table->string('username')->unique();
             $table->string('password');
             $table->string('email')->unique();
@@ -53,12 +54,17 @@ return new class extends Migration
 
             // Bayi Tipi ve Diğer Özellikler
             $table->enum('dealer_type', ['Ana Bayi', 'Alt Bayi']);
+            $table->boolean('is_super_dealer')->default(false);
             $table->string('main_dealer')->nullable();
             $table->boolean('campaign_news')->default(false);
             $table->boolean('contract')->default(false);
             $table->boolean('kvkk')->default(false);
             $table->boolean('separate_warehouse')->default(false);
             $table->boolean('gift_passive')->default(false);
+            $table->boolean('tax_document_required')->default(false);
+            $table->boolean('signature_circular_required')->default(false);
+            $table->boolean('trade_registry_required')->default(false);
+            $table->boolean('findeks_report_required')->default(false);
 
             // Temsilci ve Dil Bilgileri
             $table->string('representative')->nullable();
