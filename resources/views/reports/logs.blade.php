@@ -13,10 +13,10 @@
                     <form method="GET" action="{{ route('reports.logs') }}" class="mb-4">
                         <div class="row g-3">
                             <div class="col-md-3">
-                                <input type="date" name="start_date" class="form-control" value="{{ request('start_date') }}">
+                                <input type="date" name="start_date" class="form-control" value="{{ request('start_date') }}" placeholder="Başlangıç Tarihi">
                             </div>
                             <div class="col-md-3">
-                                <input type="date" name="end_date" class="form-control" value="{{ request('end_date') }}">
+                                <input type="date" name="end_date" class="form-control" value="{{ request('end_date') }}" placeholder="Bitiş Tarihi">
                             </div>
                             <div class="col-md-4">
                                 <div class="input-group">
@@ -27,9 +27,9 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-secondary" id="exportExcel">
-                                    <i class="fas fa-file-excel"></i> Excele Aktar
-                                </button>
+                                <a href="{{ route('reports.logs.export') }}?{{ http_build_query(request()->except('page')) }}" class="btn btn-success w-100">
+                                    <i class="fas fa-file-csv"></i> CSV'e Aktar
+                                </a>
                             </div>
                         </div>
                     </form>
@@ -47,23 +47,27 @@
                                     <th>AdSoyad</th>
                                     <th>Unvan</th>
                                     <th>İşlem</th>
-                                    <th>Kelime</th>
+                                    <th>Detay</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($logs as $log)
+                                @forelse($logs as $log)
                                 <tr>
-                                    <td>{{ $log['id'] }}</td>
-                                    <td>{{ $log['tarih'] }}</td>
-                                    <td>{{ $log['kulNo'] }}</td>
-                                    <td>{{ $log['kulAdi'] }}</td>
-                                    <td>{{ $log['ip'] }}</td>
-                                    <td>{{ $log['adSoyad'] }}</td>
-                                    <td>{{ $log['unvan'] }}</td>
-                                    <td>{{ $log['islem'] }}</td>
-                                    <td>{{ $log['kelime'] }}</td>
+                                    <td>{{ $log->id }}</td>
+                                    <td>{{ $log->created_at->format('d.m.Y H:i:s') }}</td>
+                                    <td>{{ $log->user_id }}</td>
+                                    <td>{{ $log->user ? $log->user->name : 'Bilinmiyor' }}</td>
+                                    <td>{{ $log->ip_address }}</td>
+                                    <td>{{ $log->user ? $log->user->first_name . ' ' . $log->user->last_name : '' }}</td>
+                                    <td>{{ $log->dealer ? $log->dealer->company_title : '' }}</td>
+                                    <td>{{ $log->action }}</td>
+                                    <td>{{ Str::limit($log->details, 30) }}</td>
                                 </tr>
-                                @endforeach
+                                @empty
+                                <tr>
+                                    <td colspan="9" class="text-center">Kayıt bulunamadı</td>
+                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -71,21 +75,9 @@
                     <!-- Sayfalama -->
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <div>
-                            Gösteriliyor 1 ile 3 arası 3 toplam
+                            Gösteriliyor {{ $logs->firstItem() ?? 0 }} ile {{ $logs->lastItem() ?? 0 }} arası, toplam {{ $logs->total() ?? 0 }} kayıt
                         </div>
-                        <nav>
-                            <ul class="pagination mb-0">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Önceki</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1</a>
-                                </li>
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#">Sonraki</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        {{ $logs->appends(request()->except('page'))->links() }}
                     </div>
                 </div>
             </div>
@@ -124,16 +116,4 @@
     padding: 0.375rem 0.75rem;
 }
 </style>
-@endpush
-
-@push('scripts')
-<script>
-$(document).ready(function() {
-    // Excel export butonu
-    $('#exportExcel').click(function() {
-        // Excel export işlemi burada yapılacak
-        alert('Excel export özelliği eklenecek');
-    });
-});
-</script>
 @endpush 

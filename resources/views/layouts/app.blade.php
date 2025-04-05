@@ -176,7 +176,7 @@
                         <li><a href="{{ route('orders.approved.details') }}">Onaylanan Siparişler Detay</a></li>
                         <li><a href="{{ route('orders.cancelled') }}">İptal Siparişler</a></li>
                         <li><a href="{{ route('orders.cancelled.details') }}">İptal Siparişler Detay</a></li>
-                        <li><a href="#">Sepet Hatırlat</a></li>
+                       <!-- <li><a href="#">Sepet Hatırlat</a></li> -->
                     </ul>
                 </li>
                 <li class="sidebar-item">
@@ -236,7 +236,7 @@
                         <li><a href="{{ route('reports.daily-dealer-sales') }}">Günlük Bayi Satış</a></li>
                         <li><a href="{{ route('reports.yearly-dealer-sales') }}">Yıllık Bayi Satış</a></li>
                         <li><a href="{{ route('reports.yearly-sales') }}">Yıllık Satış</a></li>
-                        <li><a href="{{ route('reports.representative-earnings') }}">Temsilci Hakediş Raporu</a></li>
+                       <!-- <li><a href="{{ route('reports.representative-earnings') }}">Temsilci Hakediş Raporu</a></li> -->
                         <li><a href="{{ route('reports.stock-detail') }}">Stok Raporu Detay</a></li>
                         <li><a href="{{ route('reports.stock-summary') }}">Stok Raporu Özet</a></li>
                        

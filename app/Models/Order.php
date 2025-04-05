@@ -11,6 +11,7 @@ class Order extends Model
 
     protected $fillable = [
         'order_number',
+        'dealer_id',
         'status',
         'payment_method',
         'company_title',
@@ -30,5 +31,10 @@ class Order extends Model
     public function details()
     {
         return $this->hasMany(OrderDetail::class);
+    }
+    
+    public function dealer()
+    {
+        return $this->belongsTo(Dealer::class);
     }
 }

@@ -157,6 +157,12 @@ Route::prefix('reports')->name('reports.')->group(function () {
     Route::get('/representative-earnings', [ReportController::class, 'representativeEarnings'])->name('representative-earnings');
     Route::get('/stock-detail', [ReportController::class, 'stockDetailReport'])->name('stock-detail');
     Route::get('/stock-summary', [ReportController::class, 'stockSummaryReport'])->name('stock-summary');
+    
+    // Excel export routes
+    Route::get('/logs/export', [ReportController::class, 'exportLogs'])->name('logs.export');
+    Route::get('/dealers/export', [ReportController::class, 'exportDealers'])->name('dealers.export');
+    Route::get('/sales/export', [ReportController::class, 'exportSales'])->name('sales.export');
+    Route::get('/stocks/export', [ReportController::class, 'exportStocks'])->name('stocks.export');
 });
 
 // Kullanıcı Yönetimi Routes

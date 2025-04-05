@@ -13,11 +13,28 @@
                     <form method="GET" action="{{ route('reports.dealers') }}" class="mb-4">
                         <div class="row g-3">
                             <div class="col-md-3">
-                                <select name="type" class="form-select">
-                                    <option value="">-SEÇİNİZ-</option>
+                                <select name="dealer_type" class="form-select">
+                                    <option value="">-BAYİ TİPİ SEÇİNİZ-</option>
+                                    <option value="Ana Bayi" {{ request('dealer_type') == 'Ana Bayi' ? 'selected' : '' }}>Ana Bayi</option>
+                                    <option value="Alt Bayi" {{ request('dealer_type') == 'Alt Bayi' ? 'selected' : '' }}>Alt Bayi</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
+                                <select name="status" class="form-select">
+                                    <option value="">-DURUM-</option>
+                                    <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Aktif</option>
+                                    <option value="passive" {{ request('status') == 'passive' ? 'selected' : '' }}>Pasif</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="is_super_dealer" id="isSuperDealer" {{ request('is_super_dealer') ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="isSuperDealer">
+                                        Super Dealer
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
                                 <div class="input-group">
                                     <input type="text" name="search" class="form-control" placeholder="Aranacak bilgi girin..." value="{{ request('search') }}">
                                     <button type="submit" class="btn btn-primary">
@@ -26,9 +43,9 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-secondary" id="exportExcel">
-                                    <i class="fas fa-file-excel"></i> Excele Aktar
-                                </button>
+                                <a href="{{ route('reports.dealers.export') }}?{{ http_build_query(request()->except('page')) }}" class="btn btn-success w-100">
+                                    <i class="fas fa-file-csv"></i> CSV'e Aktar
+                                </a>
                             </div>
                         </div>
                     </form>
@@ -39,23 +56,49 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>K.Tarihi</th>
-                                    <th>AdSoyad</th>
-                                    <th>İl</th>
-                                    <th>İlçe</th>
+                                    <th>Bayi No</th>
+                                    <th>Ünvan</th>
+                                    <th>Bayi Tipi</th>
                                     <th>E-mail</th>
-                                    <th>Tel</th>
-                                    <th>TopGiriş</th>
-                                    <th>TopSip</th>
-                                    <th>Son1Yıl</th>
-                                    <th>Son6Ay</th>
-                                    <th>Son3Ay</th>
-                                    <th>Son1Ay</th>
-                                    <th>Son1</th>
+                                    <th>Telefon</th>
+                                    <th>Şehir</th>
+                                    <th>İlçe</th>
+                                    <th>Toplam Sipariş</th>
+                                    <th>Toplam Tutar</th>
+                                    <th>Kayıt Tarihi</th>
+                                    <th>Durum</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Veriler veritabanından gelecek -->
+                                @forelse($dealers as $dealer)
+                                <tr>
+                                    <td>{{ $dealer->id }}</td>
+                                    <td>{{ $dealer->dealer_no }}</td>
+                                    <td>{{ $dealer->company_title }}</td>
+                                    <td>{{ $dealer->dealer_type }}</td>
+                                    <td>{{ $dealer->email }}</td>
+                                    <td>{{ $dealer->phone }}</td>
+                                    <td>{{ $dealer->city }}</td>
+                                    <td>{{ $dealer->district }}</td>
+                                    <td>{{ $dealer->total_orders ?? 0 }}</td>
+                                    <td>{{ number_format($dealer->total_amount ?? 0, 2) }} TL</td>
+                                    <td>{{ $dealer->created_at->format('d.m.Y') }}</td>
+                                    <td>
+                                        @if($dealer->is_active)
+                                            <span class="badge bg-success">Aktif</span>
+                                        @else
+                                            <span class="badge bg-danger">Pasif</span>
+                                        @endif
+                                        @if($dealer->is_super_dealer)
+                                            <span class="badge bg-primary">Super</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="12" class="text-center">Kayıt bulunamadı</td>
+                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -63,21 +106,9 @@
                     <!-- Sayfalama -->
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <div>
-                            Gösteriliyor 0 kayıt
+                            Gösteriliyor {{ $dealers->firstItem() ?? 0 }} ile {{ $dealers->lastItem() ?? 0 }} arası, toplam {{ $dealers->total() ?? 0 }} kayıt
                         </div>
-                        <nav>
-                            <ul class="pagination mb-0">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Önceki</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1</a>
-                                </li>
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#">Sonraki</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        {{ $dealers->appends(request()->except('page'))->links() }}
                     </div>
                 </div>
             </div>
@@ -123,16 +154,4 @@
     -webkit-overflow-scrolling: touch;
 }
 </style>
-@endpush
-
-@push('scripts')
-<script>
-$(document).ready(function() {
-    // Excel export butonu
-    $('#exportExcel').click(function() {
-        // Excel export işlemi burada yapılacak
-        alert('Excel export özelliği eklenecek');
-    });
-});
-</script>
 @endpush 

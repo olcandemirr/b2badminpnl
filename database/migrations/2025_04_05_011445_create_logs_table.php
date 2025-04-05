@@ -13,19 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->string('order_number')->unique();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('dealer_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('status')->default('pending');
-            $table->string('payment_method');
-            $table->string('company_title');
-            $table->string('dealer_type');
-            $table->string('main_dealer')->nullable();
-            $table->string('customer_name');
-            $table->decimal('total', 10, 2);
-            $table->text('message')->nullable();
+            $table->string('ip_address', 45)->nullable();
+            $table->string('action');
+            $table->text('details')->nullable();
             $table->timestamps();
+            
+            // İndeksler
+            $table->index('user_id');
+            $table->index('dealer_id');
+            $table->index('action');
+            $table->index('created_at');
         });
     }
 
@@ -36,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('logs');
     }
 };
