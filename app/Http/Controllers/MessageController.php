@@ -133,7 +133,8 @@ class MessageController extends Controller
 
     public function destroy(Message $message)
     {
-        if ($message->receiver_id !== auth()->id()) {
+        // Sent veya inbox mesajlarını silebilmesi için receiver_id veya sender_id kontrolü
+        if ($message->receiver_id !== auth()->id() && $message->sender_id !== auth()->id()) {
             return response()->json(['error' => 'Unauthorized'], 403);
         }
 

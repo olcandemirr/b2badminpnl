@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ComplaintController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +92,18 @@ Route::prefix('messages')->name('messages.')->group(function () {
     Route::post('/{message}/read', [MessageController::class, 'markAsRead'])->name('read');
     Route::get('/{message}', [MessageController::class, 'show'])->name('show');
     Route::delete('/{message}', [MessageController::class, 'destroy'])->name('destroy');
+});
+
+// Şikayetler Modülü Routes
+Route::prefix('complaints')->name('complaints.')->group(function () {
+    Route::get('/create', [ComplaintController::class, 'create'])->name('create');
+    Route::post('/', [ComplaintController::class, 'store'])->name('store');
+    Route::get('/inbox', [ComplaintController::class, 'inbox'])->name('inbox');
+    Route::get('/sent', [ComplaintController::class, 'sent'])->name('sent');
+    Route::post('/{complaint}/read', [ComplaintController::class, 'markAsRead'])->name('read');
+    Route::get('/{complaint}', [ComplaintController::class, 'show'])->name('show');
+    Route::put('/{complaint}', [ComplaintController::class, 'update'])->name('update');
+    Route::delete('/{complaint}', [ComplaintController::class, 'destroy'])->name('destroy');
 });
 
 // Tanımlar Routes
