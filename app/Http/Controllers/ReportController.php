@@ -147,7 +147,7 @@ class ReportController extends Controller
         }
         
         $dealers = $query->orderBy('dealers.created_at', 'desc')->paginate(20);
-        
+
         return view('reports.dealers', compact('dealers'));
     }
 

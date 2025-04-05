@@ -45,12 +45,12 @@
                                 <tr>
                                     <td>{{ $message->created_at->format('d.m.Y H:i') }}</td>
                                     <td>{{ $message->id }}</td>
-                                    <td>{{ $message->receiver->company_title }}</td>
+                                    <td>{{ $message->dealer->company_title ?? 'Belirtilmemiş' }}</td>
                                     <td>{{ $message->order_id ?? '-' }}</td>
                                     <td>{{ $message->type ?? 'Genel' }}</td>
                                     <td>{{ $message->subject }}</td>
                                     <td>
-                                        @if($message->is_email_sent)
+                                        @if($message->is_sent_as_email)
                                             <span class="badge bg-success">Gönderildi</span>
                                         @else
                                             <span class="badge bg-warning">Bekliyor</span>
@@ -200,7 +200,7 @@ function showMessage(id) {
                     <strong>Bayi:</strong> ${response.dealer}<br>
                     <strong>Tarih:</strong> ${response.created_at}<br>
                     <strong>Konu:</strong> ${response.subject}<br>
-                    <strong>Email Durumu:</strong> ${response.is_email_sent ? '<span class="badge bg-success">Gönderildi</span>' : '<span class="badge bg-warning">Bekliyor</span>'}
+                    <strong>Email Durumu:</strong> ${response.is_sent_as_email ? '<span class="badge bg-success">Gönderildi</span>' : '<span class="badge bg-warning">Bekliyor</span>'}
                 </div>
                 <div class="message-content">
                     ${response.message}

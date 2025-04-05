@@ -23,11 +23,21 @@ class MessageController extends Controller
             'send_as_email' => 'boolean'
         ]);
 
+        // Bayinin sahibi olan kullanıcıyı bulalım
+        $dealer = Dealer::findOrFail($validated['dealer_id']);
+        $receiverId = null; // Varsayılan olarak null
+
+        // Eğer bayinin temsilcisi varsa onu alıcı olarak belirleyelim
+        if (!empty($dealer->representative)) {
+            $receiverId = $dealer->representative;
+        }
+
         $message = Message::create([
             'dealer_id' => $validated['dealer_id'],
             'subject' => $validated['subject'],
             'message' => $validated['message'],
             'sender_id' => auth()->id(),
+            'receiver_id' => $receiverId,
             'is_sent_as_email' => $request->has('send_as_email')
         ]);
 
@@ -102,16 +112,22 @@ class MessageController extends Controller
 
     public function show(Message $message)
     {
-        if ($message->receiver_id !== auth()->id()) {
+        if ($message->receiver_id !== auth()->id() && $message->sender_id !== auth()->id()) {
             return response()->json(['error' => 'Unauthorized'], 403);
         }
+
+        $dealerName = $message->dealer ? $message->dealer->company_title : 'Belirtilmemiş';
+        $senderName = $message->sender ? $message->sender->name : 'Belirtilmemiş';
+        $receiverName = $message->receiver ? $message->receiver->name : 'Belirtilmemiş';
 
         return response()->json([
             'subject' => $message->subject,
             'message' => $message->message,
-            'sender' => $message->sender->name,
-            'dealer' => $message->dealer->company_title,
+            'sender' => $senderName,
+            'receiver' => $receiverName,
+            'dealer' => $dealerName,
             'created_at' => $message->created_at->format('d.m.Y H:i'),
+            'is_email_sent' => $message->is_sent_as_email,
         ]);
     }
 

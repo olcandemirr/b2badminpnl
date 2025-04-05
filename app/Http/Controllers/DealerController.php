@@ -260,8 +260,8 @@ class DealerController extends Controller
 
             $dealer->save();
 
-            return redirect()->route('dealers.index')
-                ->with('success', 'Bayi başarıyla oluşturuldu.');
+        return redirect()->route('dealers.index')
+            ->with('success', 'Bayi başarıyla oluşturuldu.');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()
                 ->with('error', 'Bayi oluşturulurken bir hata oluştu: ' . $e->getMessage());

@@ -82,15 +82,15 @@ Route::get('/super-dealers', [DealerController::class, 'superDealers'])->name('d
 Route::get('/dealers/{id}/make-super-dealer', [DealerController::class, 'makeSuperDealer'])->name('dealers.make-super-dealer');
 Route::get('/dealers/{id}/remove-super-dealer', [DealerController::class, 'removeSuperDealer'])->name('dealers.remove-super-dealer');
 
-// Mesaj Yönetimi
-Route::prefix('messages')->group(function () {
-    Route::get('/create', [MessageController::class, 'create'])->name('messages.create');
-    Route::post('/', [MessageController::class, 'store'])->name('messages.store');
-    Route::get('/inbox', [MessageController::class, 'inbox'])->name('messages.inbox');
-    Route::get('/sent', [MessageController::class, 'sent'])->name('messages.sent');
-    Route::post('/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.read');
-    Route::delete('/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
-    Route::get('/{message}', [MessageController::class, 'show'])->name('messages.show');
+// Mesajlar Modülü Routes
+Route::prefix('messages')->name('messages.')->group(function () {
+    Route::get('/create', [MessageController::class, 'create'])->name('create');
+    Route::post('/', [MessageController::class, 'store'])->name('store');
+    Route::get('/inbox', [MessageController::class, 'inbox'])->name('inbox');
+    Route::get('/sent', [MessageController::class, 'sent'])->name('sent');
+    Route::post('/{message}/read', [MessageController::class, 'markAsRead'])->name('read');
+    Route::get('/{message}', [MessageController::class, 'show'])->name('show');
+    Route::delete('/{message}', [MessageController::class, 'destroy'])->name('destroy');
 });
 
 // Tanımlar Routes
