@@ -12,67 +12,28 @@
                     <form action="{{ route('settings.desi-prices.update') }}" method="POST">
                         @csrf
                         
-                        <!-- Desi Fiyat Ekle -->
-                        <div class="mb-4">
-                            <div class="row g-3">
-                                <div class="col-md-3">
-                                    <label class="form-label">Ülke</label>
-                                    <select class="form-select" name="country">
-                                        <option value="">Seçiniz</option>
-                                        <option value="TR">Türkiye</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="form-label">Şehir</label>
-                                    <select class="form-select" name="city">
-                                        <option value="">Seçiniz</option>
-                                        <option value="ISTANBUL">İSTANBUL</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="form-label">Desi veya Adet Baş.</label>
-                                    <input type="number" class="form-control" name="desi_start">
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="form-label">Desi veya Adet Bit.</label>
-                                    <input type="number" class="form-control" name="desi_end">
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="form-label">Fiyat</label>
-                                    <div class="input-group">
-                                        <input type="number" class="form-control" name="price" step="0.01">
-                                        <select class="form-select" name="currency" style="max-width: 80px;">
-                                            <option value="TL">TL</option>
-                                            <option value="USD">USD</option>
-                                            <option value="EUR">EUR</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 d-flex align-items-end">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fas fa-plus me-1"></i> Ekle
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Desi Fiyat Listesi -->
+                        <!-- Desi Fiyatlandırma Tablosu -->
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Ülke</th>
-                                        <th>Şehir</th>
-                                        <th>Desi/Adet Baş.</th>
-                                        <th>Desi/Adet Bit.</th>
-                                        <th>Fiyat</th>
-                                        <th>Düz.</th>
-                                        <th>Sil</th>
+                                        <th style="width: 80px">Desi</th>
+                                        <th>Fiyat (TL)</th>
+                                        <th>Açıklama</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Veriler buraya gelecek -->
+                                    @for ($i = 1; $i <= 30; $i++)
+                                    <tr>
+                                        <td class="text-center">{{ $i }}</td>
+                                        <td>
+                                            <input type="number" class="form-control" name="desi_prices[{{ $i }}]" value="{{ $desiPrices[$i] ?? 0 }}" step="0.01">
+                                        </td>
+                                        <td>
+                                            <span class="text-muted">{{ $i }} Desi için kargo fiyatı</span>
+                                        </td>
+                                    </tr>
+                                    @endfor
                                 </tbody>
                             </table>
                         </div>

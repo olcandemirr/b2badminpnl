@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Setting;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,5 +25,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProductSeeder::class,
         ]);
+
+        // Varsayılan ayarları ekle
+        Setting::addDefaultSettings();
     }
 }

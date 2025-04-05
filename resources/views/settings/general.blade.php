@@ -32,19 +32,19 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Site Adı</label>
-                                    <input type="text" class="form-control" name="site_name">
+                                    <input type="text" class="form-control" name="site_name" value="{{ $settings['site_name'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Site Adı En</label>
-                                    <input type="text" class="form-control" name="site_name_en">
+                                    <input type="text" class="form-control" name="site_name_en" value="{{ $settings['site_name_en'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Site Açıklaması</label>
-                                    <textarea class="form-control" name="site_description" rows="3"></textarea>
+                                    <textarea class="form-control" name="site_description" rows="3">{{ $settings['site_description'] ?? '' }}</textarea>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Site Açıklaması En</label>
-                                    <textarea class="form-control" name="site_description_en" rows="3"></textarea>
+                                    <textarea class="form-control" name="site_description_en" rows="3">{{ $settings['site_description_en'] ?? '' }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -55,11 +55,11 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label">Head Head Arası Kod</label>
-                                    <textarea class="form-control" name="head_code" rows="3"></textarea>
+                                    <textarea class="form-control" name="head_code" rows="3">{{ $settings['head_code'] ?? '' }}</textarea>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Body Body Arası Kod</label>
-                                    <textarea class="form-control" name="body_code" rows="3"></textarea>
+                                    <textarea class="form-control" name="body_code" rows="3">{{ $settings['body_code'] ?? '' }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -70,47 +70,47 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label">Firma Adı</label>
-                                    <input type="text" class="form-control" name="company_name">
+                                    <input type="text" class="form-control" name="company_name" value="{{ $settings['company_name'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Adres</label>
-                                    <input type="text" class="form-control" name="address">
+                                    <input type="text" class="form-control" name="address" value="{{ $settings['address'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Tel</label>
-                                    <input type="text" class="form-control" name="phone">
+                                    <input type="text" class="form-control" name="phone" value="{{ $settings['phone'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Tel1</label>
-                                    <input type="text" class="form-control" name="phone1">
+                                    <input type="text" class="form-control" name="phone1" value="{{ $settings['phone1'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">WhatsApp</label>
-                                    <input type="text" class="form-control" name="whatsapp">
+                                    <input type="text" class="form-control" name="whatsapp" value="{{ $settings['whatsapp'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Web</label>
-                                    <input type="text" class="form-control" name="website">
+                                    <input type="text" class="form-control" name="website" value="{{ $settings['website'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Sistem Mail Adresi</label>
-                                    <input type="email" class="form-control" name="system_email">
+                                    <input type="email" class="form-control" name="system_email" value="{{ $settings['system_email'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Diğer Mail Adresleri (virgülle ayırınız)</label>
-                                    <input type="text" class="form-control" name="other_emails">
+                                    <input type="text" class="form-control" name="other_emails" value="{{ $settings['other_emails'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Bayilik Mail Adresi</label>
-                                    <input type="email" class="form-control" name="dealer_email">
+                                    <input type="email" class="form-control" name="dealer_email" value="{{ $settings['dealer_email'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Altyapı Mail Adresi</label>
-                                    <input type="email" class="form-control" name="infrastructure_email">
+                                    <input type="email" class="form-control" name="infrastructure_email" value="{{ $settings['infrastructure_email'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Mail Server</label>
-                                    <input type="text" class="form-control" name="mail_server">
+                                    <input type="text" class="form-control" name="mail_server" value="{{ $settings['mail_server'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Mail Şifre</label>
@@ -118,33 +118,33 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Port</label>
-                                    <input type="text" class="form-control" name="mail_port">
+                                    <input type="text" class="form-control" name="mail_port" value="{{ $settings['mail_port'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="ssl_enabled" id="sslEnabled">
+                                        <input type="checkbox" class="form-check-input" name="ssl_enabled" id="sslEnabled" {{ $settings['ssl_enabled'] ?? false ? 'checked' : '' }}>
                                         <label class="form-check-label" for="sslEnabled">SSL</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Facebook Sayfası</label>
-                                    <input type="text" class="form-control" name="facebook_page">
+                                    <input type="text" class="form-control" name="facebook_page" value="{{ $settings['facebook_page'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Twitter Sayfası</label>
-                                    <input type="text" class="form-control" name="twitter_page">
+                                    <input type="text" class="form-control" name="twitter_page" value="{{ $settings['twitter_page'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Instagram Sayfası</label>
-                                    <input type="text" class="form-control" name="instagram_page">
+                                    <input type="text" class="form-control" name="instagram_page" value="{{ $settings['instagram_page'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Linkedin Sayfası</label>
-                                    <input type="text" class="form-control" name="linkedin_page">
+                                    <input type="text" class="form-control" name="linkedin_page" value="{{ $settings['linkedin_page'] ?? '' }}">
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">Sipariş Mail Mesajı</label>
-                                    <textarea class="form-control" name="order_mail_message" rows="3"></textarea>
+                                    <textarea class="form-control" name="order_mail_message" rows="3">{{ $settings['order_mail_message'] ?? '' }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -155,41 +155,41 @@
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="kdv_included" id="kdvIncluded">
+                                        <input type="checkbox" class="form-check-input" name="kdv_included" id="kdvIncluded" {{ $settings['kdv_included'] ?? false ? 'checked' : '' }}>
                                         <label class="form-check-label" for="kdvIncluded">KDV Dahil</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Kdv Oranı</label>
                                     <select class="form-select" name="kdv_rate">
-                                        <option value="20">20</option>
-                                        <option value="18">18</option>
-                                        <option value="10">10</option>
-                                        <option value="8">8</option>
-                                        <option value="1">1</option>
+                                        <option value="20" {{ ($settings['kdv_rate'] ?? '') == '20' ? 'selected' : '' }}>20</option>
+                                        <option value="18" {{ ($settings['kdv_rate'] ?? '') == '18' ? 'selected' : '' }}>18</option>
+                                        <option value="10" {{ ($settings['kdv_rate'] ?? '') == '10' ? 'selected' : '' }}>10</option>
+                                        <option value="8" {{ ($settings['kdv_rate'] ?? '') == '8' ? 'selected' : '' }}>8</option>
+                                        <option value="1" {{ ($settings['kdv_rate'] ?? '') == '1' ? 'selected' : '' }}>1</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="stock_control" id="stockControl">
+                                        <input type="checkbox" class="form-check-input" name="stock_control" id="stockControl" {{ $settings['stock_control'] ?? false ? 'checked' : '' }}>
                                         <label class="form-check-label" for="stockControl">Stok Kontrol</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="show_available" id="showAvailable">
+                                        <input type="checkbox" class="form-check-input" name="show_available" id="showAvailable" {{ $settings['show_available'] ?? false ? 'checked' : '' }}>
                                         <label class="form-check-label" for="showAvailable">Mevcut Gizle</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="show_all_products" id="showAllProducts">
+                                        <input type="checkbox" class="form-check-input" name="show_all_products" id="showAllProducts" {{ $settings['show_all_products'] ?? false ? 'checked' : '' }}>
                                         <label class="form-check-label" for="showAllProducts">Tüm Ürünleri Göster</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="product_photo_preview" id="productPhotoPreview">
+                                        <input type="checkbox" class="form-check-input" name="product_photo_preview" id="productPhotoPreview" {{ $settings['product_photo_preview'] ?? false ? 'checked' : '' }}>
                                         <label class="form-check-label" for="productPhotoPreview">Ürün Foto Önizleme</label>
                                     </div>
                                 </div>
@@ -203,40 +203,40 @@
                                 <div class="col-md-4">
                                     <label class="form-label">Min Sipariş Tutarı</label>
                                     <div class="input-group">
-                                        <input type="number" class="form-control" name="min_order_amount" step="0.01">
+                                        <input type="number" class="form-control" name="min_order_amount" step="0.01" value="{{ $settings['min_order_amount'] ?? '' }}">
                                         <select class="form-select" name="min_order_currency" style="max-width: 80px;">
-                                            <option value="TL">TL</option>
-                                            <option value="USD">USD</option>
-                                            <option value="EUR">EUR</option>
+                                            <option value="TL" {{ ($settings['min_order_currency'] ?? '') == 'TL' ? 'selected' : '' }}>TL</option>
+                                            <option value="USD" {{ ($settings['min_order_currency'] ?? '') == 'USD' ? 'selected' : '' }}>USD</option>
+                                            <option value="EUR" {{ ($settings['min_order_currency'] ?? '') == 'EUR' ? 'selected' : '' }}>EUR</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Ücretsiz Kargo</label>
                                     <div class="input-group">
-                                        <input type="number" class="form-control" name="free_shipping_amount" step="0.01">
+                                        <input type="number" class="form-control" name="free_shipping_amount" step="0.01" value="{{ $settings['free_shipping_amount'] ?? '' }}">
                                         <select class="form-select" name="free_shipping_currency" style="max-width: 80px;">
-                                            <option value="TL">TL</option>
-                                            <option value="USD">USD</option>
-                                            <option value="EUR">EUR</option>
+                                            <option value="TL" {{ ($settings['free_shipping_currency'] ?? '') == 'TL' ? 'selected' : '' }}>TL</option>
+                                            <option value="USD" {{ ($settings['free_shipping_currency'] ?? '') == 'USD' ? 'selected' : '' }}>USD</option>
+                                            <option value="EUR" {{ ($settings['free_shipping_currency'] ?? '') == 'EUR' ? 'selected' : '' }}>EUR</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Kredi Kartı İndirimi</label>
-                                    <input type="number" class="form-control" name="credit_card_discount" value="0">
+                                    <input type="number" class="form-control" name="credit_card_discount" value="{{ $settings['credit_card_discount'] ?? '0' }}">
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Havale İndirimi</label>
-                                    <input type="number" class="form-control" name="bank_transfer_discount" value="3">
+                                    <input type="number" class="form-control" name="bank_transfer_discount" value="{{ $settings['bank_transfer_discount'] ?? '3' }}">
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Mail Order İndirimi</label>
-                                    <input type="number" class="form-control" name="mail_order_discount" value="1">
+                                    <input type="number" class="form-control" name="mail_order_discount" value="{{ $settings['mail_order_discount'] ?? '1' }}">
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Sadece Çek Ödeme</label>
-                                    <input type="number" class="form-control" name="check_only_payment" value="0">
+                                    <input type="number" class="form-control" name="check_only_payment" value="{{ $settings['check_only_payment'] ?? '0' }}">
                                 </div>
                             </div>
                         </div>
@@ -246,7 +246,7 @@
                             <div class="row g-3">
                                 <div class="col-md-3">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="cash_payment" id="cashPayment" checked>
+                                        <input type="checkbox" class="form-check-input" name="cash_payment" id="cashPayment" {{ $settings['cash_payment'] ?? false ? 'checked' : '' }}>
                                         <label class="form-check-label" for="cashPayment">Çoklu Para Birimi ile Öde</label>
                                     </div>
                                 </div>

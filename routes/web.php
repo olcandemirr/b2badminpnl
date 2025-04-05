@@ -225,4 +225,8 @@ Route::prefix('settings')->name('settings.')->group(function () {
     Route::post('/parameters', [SettingController::class, 'updateParameters'])->name('parameters.update');
     Route::get('/surveys', [SettingController::class, 'surveys'])->name('surveys');
     Route::post('/surveys', [SettingController::class, 'updateSurveys'])->name('surveys.update');
+    Route::post('/surveys/options/add', [SettingController::class, 'addSurveyOption'])->name('surveys.options.add');
+    Route::post('/surveys/options/update/{id}', [SettingController::class, 'updateSurveyOption'])->name('surveys.options.update');
+    Route::get('/surveys/options/delete/{id}', [SettingController::class, 'deleteSurveyOption'])->name('surveys.options.delete');
+    Route::post('/surveys/options/reorder', [SettingController::class, 'reorderSurveyOptions'])->name('surveys.options.reorder');
 });
