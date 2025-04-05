@@ -177,6 +177,9 @@ Route::prefix('codes')->name('codes.')->group(function () {
     Route::get('/', [CodeController::class, 'index'])->name('index');
     Route::get('/create', [CodeController::class, 'create'])->name('create');
     Route::post('/', [CodeController::class, 'store'])->name('store');
+    Route::get('/{id}/edit', [CodeController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [CodeController::class, 'update'])->name('update');
+    Route::delete('/{id}', [CodeController::class, 'destroy'])->name('destroy');
 });
 
 // Ödeme Ayarları Routes
