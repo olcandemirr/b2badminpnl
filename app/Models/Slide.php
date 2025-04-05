@@ -19,12 +19,25 @@ class Slide extends Model
         'eng_description1',
         'photo',
         'link',
-        'order',
-        'style'
+        'style',
+        'order'
     ];
 
     public function section()
     {
         return $this->belongsTo(Section::class);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        if ($this->photo) {
+            return asset('uploads/slides/' . $this->photo);
+        }
+        return null;
+    }
+
+    public function getStyleClassAttribute()
+    {
+        return $this->style ? 'slide-style-'.$this->style : '';
     }
 }

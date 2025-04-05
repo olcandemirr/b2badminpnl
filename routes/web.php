@@ -93,57 +93,57 @@ Route::prefix('messages')->group(function () {
     Route::get('/{message}', [MessageController::class, 'show'])->name('messages.show');
 });
 
-// Tanımlar Modülü Routes
+// Tanımlar Routes
 Route::prefix('definitions')->name('definitions.')->group(function () {
-    // Sections
+    // Bölümler
     Route::get('/sections', [DefinitionController::class, 'sections'])->name('sections');
-    Route::post('/sections/store', [DefinitionController::class, 'storeSection'])->name('sections.store');
-    Route::put('/sections/{section}', [DefinitionController::class, 'updateSection'])->name('sections.update');
-    Route::delete('/sections/{section}', [DefinitionController::class, 'deleteSection'])->name('sections.delete');
+    Route::post('/sections', [DefinitionController::class, 'storeSection'])->name('sections.store');
+    Route::put('/sections/{section}', [DefinitionController::class, 'updateSection']);
+    Route::delete('/sections/{section}', [DefinitionController::class, 'deleteSection']);
 
-    // Categories
+    // Kategoriler
     Route::get('/categories', [DefinitionController::class, 'categories'])->name('categories');
-    Route::post('/categories/store', [DefinitionController::class, 'storeCategory'])->name('categories.store');
-    Route::put('/categories/{category}', [DefinitionController::class, 'updateCategory'])->name('categories.update');
-    Route::delete('/categories/{category}', [DefinitionController::class, 'deleteCategory'])->name('categories.delete');
+    Route::post('/categories', [DefinitionController::class, 'storeCategory'])->name('categories.store');
+    Route::put('/categories/{category}', [DefinitionController::class, 'updateCategory']);
+    Route::delete('/categories/{category}', [DefinitionController::class, 'deleteCategory']);
 
-    // Contents
-    Route::get('/contents', [DefinitionController::class, 'contents'])->name('contents');
-    Route::get('/contents-list', [DefinitionController::class, 'contentsList'])->name('contents.list');
-    Route::post('/contents/store', [DefinitionController::class, 'storeContent'])->name('contents.store');
-    Route::put('/contents/{content}', [DefinitionController::class, 'updateContent'])->name('contents.update');
-    Route::delete('/contents/{content}', [DefinitionController::class, 'deleteContent'])->name('contents.delete');
-
-    // Slides
+    // Slaytlar
     Route::get('/slides', [DefinitionController::class, 'slides'])->name('slides');
-    Route::post('/slides/store', [DefinitionController::class, 'storeSlide'])->name('slides.store');
-    Route::put('/slides/{slide}', [DefinitionController::class, 'updateSlide'])->name('slides.update');
-    Route::delete('/slides/{slide}', [DefinitionController::class, 'deleteSlide'])->name('slides.delete');
+    Route::post('/slides', [DefinitionController::class, 'storeSlide'])->name('slides.store');
+    Route::put('/slides/{slide}', [DefinitionController::class, 'updateSlide']);
+    Route::delete('/slides/{slide}', [DefinitionController::class, 'deleteSlide']);
 
-    // Discount Codes
+    // İçerikler
+    Route::get('/contents', [DefinitionController::class, 'contents'])->name('contents');
+    Route::post('/contents', [DefinitionController::class, 'storeContent'])->name('contents.store');
+    Route::put('/contents/{content}', [DefinitionController::class, 'updateContent']);
+    Route::delete('/contents/{content}', [DefinitionController::class, 'deleteContent']);
+    Route::get('/contents-list', [DefinitionController::class, 'contentsList'])->name('contents.list');
+
+    // İndirim Kodları
     Route::get('/discount-codes', [DefinitionController::class, 'discountCodes'])->name('discount-codes');
-    Route::post('/discount-codes/store', [DefinitionController::class, 'storeDiscountCode'])->name('discount-codes.store');
-    Route::put('/discount-codes/{discountCode}', [DefinitionController::class, 'updateDiscountCode'])->name('discount-codes.update');
-    Route::delete('/discount-codes/{discountCode}', [DefinitionController::class, 'deleteDiscountCode'])->name('discount-codes.delete');
+    Route::post('/discount-codes', [DefinitionController::class, 'storeDiscountCode'])->name('discount-codes.store');
+    Route::put('/discount-codes/{discountCode}', [DefinitionController::class, 'updateDiscountCode']);
+    Route::delete('/discount-codes/{discountCode}', [DefinitionController::class, 'deleteDiscountCode']);
 
-    // Discount Types
+    // İndirim Tipleri
     Route::get('/discount-types', [DefinitionController::class, 'discountTypes'])->name('discount-types');
+    Route::post('/discount-types', [DefinitionController::class, 'storeDiscountType'])->name('discount-types.store');
+    Route::put('/discount-types/{discountType}', [DefinitionController::class, 'updateDiscountType']);
+    Route::delete('/discount-types/{discountType}', [DefinitionController::class, 'deleteDiscountType']);
     Route::get('/discount-types-list', [DefinitionController::class, 'discountTypesList'])->name('discount-types.list');
-    Route::post('/discount-types/store', [DefinitionController::class, 'storeDiscountType'])->name('discount-types.store');
-    Route::put('/discount-types/{discountType}', [DefinitionController::class, 'updateDiscountType'])->name('discount-types.update');
-    Route::delete('/discount-types/{discountType}', [DefinitionController::class, 'deleteDiscountType'])->name('discount-types.delete');
 
-    // Transfer
+    // Veri Transfer İşlemleri
     Route::get('/transfer', [DefinitionController::class, 'transfer'])->name('transfer');
-    Route::post('/transfer/start', [DefinitionController::class, 'startTransfer'])->name('transfer.start');
-
-    // File Import
+    Route::post('/transfer', [DefinitionController::class, 'startTransfer'])->name('transfer.start');
+    
+    // Dosya İçe Aktarma
     Route::get('/file-import', [DefinitionController::class, 'fileImport'])->name('file-import');
-    Route::post('/file-import/start', [DefinitionController::class, 'startFileImport'])->name('file-import.start');
-
-    // Photo Upload
+    Route::post('/file-import', [DefinitionController::class, 'startFileImport'])->name('file-import.start');
+    
+    // Resim Yükleme
     Route::get('/photo-upload', [DefinitionController::class, 'photoUpload'])->name('photo-upload');
-    Route::post('/photo-upload/upload', [DefinitionController::class, 'uploadPhoto'])->name('photo-upload.upload');
+    Route::post('/photo-upload', [DefinitionController::class, 'uploadPhoto'])->name('photo-upload.start');
 });
 
 // Raporlar Modülü Routes

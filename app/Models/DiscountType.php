@@ -17,4 +17,18 @@ class DiscountType extends Model
         'rate',
         'order'
     ];
+    
+    protected $casts = [
+        'rate' => 'decimal:2'
+    ];
+    
+    public function getFormattedRateAttribute()
+    {
+        return '%' . number_format($this->rate, 2);
+    }
+    
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'discount_group_code', 'name');
+    }
 }

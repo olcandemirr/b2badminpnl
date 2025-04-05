@@ -19,8 +19,25 @@ class Category extends Model
         'link'
     ];
 
+    protected $casts = [
+        'percentage' => 'decimal:2',
+    ];
+
     public function section()
     {
         return $this->belongsTo(Section::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category', 'name');
+    }
+
+    public function getImageUrlAttribute()
+    {
+        if ($this->file) {
+            return asset('uploads/categories/' . $this->file);
+        }
+        return null;
     }
 }

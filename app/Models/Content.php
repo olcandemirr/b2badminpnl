@@ -25,4 +25,25 @@ class Content extends Model
     {
         return $this->belongsTo(Section::class);
     }
+
+    public function getImageUrlAttribute()
+    {
+        if ($this->photo) {
+            return asset('uploads/contents/' . $this->photo);
+        }
+        return null;
+    }
+
+    public function getContentTypeAttribute()
+    {
+        $types = [
+            'haber' => 'Haber',
+            'duyuru' => 'Duyuru',
+            'blog' => 'Blog',
+            'sayfa' => 'Sayfa',
+            'banner' => 'Banner'
+        ];
+        
+        return $types[$this->type] ?? $this->type;
+    }
 }

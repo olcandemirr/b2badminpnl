@@ -15,4 +15,18 @@ class DiscountCode extends Model
         'rate',
         'order'
     ];
+    
+    protected $casts = [
+        'rate' => 'decimal:2'
+    ];
+    
+    public function getFormattedRateAttribute()
+    {
+        return '%' . number_format($this->rate, 2);
+    }
+    
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'discount_code', 'code');
+    }
 }
